@@ -1,0 +1,31 @@
+.journal-text {
+  transition: height 1s ease-out;
+}
+
+.journal-text:focus {
+  height: 200px;
+  overflow: auto;
+}
+
+label,
+textarea {
+  display: block;
+}
+
+textarea {
+  resize: both;
+  background: #dbdbdb;
+  border-radius: 25px;
+}
+textarea.vert {
+  resize: vertical;
+}
+textarea.noResize {
+  resize: none;
+}
+
+.add-entry {
+  background: #fb474d;
+  padding: 10px 10px 50px 10px;
+  border-radius: 20px;
+}
