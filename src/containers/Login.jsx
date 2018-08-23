@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import '../css/Register.css';
+import { Redirect, Link } from 'react-router-dom';
+import axios from 'axios';
+import Authenticate from '../utils/Authenticate';
 
 class Login extends Component {
   constructor() {
@@ -8,12 +11,44 @@ class Login extends Component {
       error: null,
       username: '',
       password: '',
+      redirectTo: null,
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(this.state);
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('handleSubmit');
+    const { username, password } = this.state;
+
+    axios
+      .post('/user/login', {
+        username,
+        password,
+      })
+      .then((response) => {
+        console.log('login response: ');
+        console.log(response);
+        if (response.status === 200) {
+          // update App.js state
+          // Authenticate.authenticate();
+          const { updateUser } = this.props;
+          updateUser({
+            loggedIn: true,
+            username: response.data.username,
+          });
+          // update the state to redirect to home
+          this.setState({
+            redirectTo: '/',
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('login error: ');
+        console.log(error);
+      });
   };
 
   handleTextChange = (e) => {
@@ -24,10 +59,13 @@ class Login extends Component {
 
   render() {
     const {
-      name, username, email, password, confirmPassword,
+      name, username, email, password, confirmPassword, redirectTo,
     } = this.state;
+    if (redirectTo) {
+      return <Redirect to={{ pathname: redirectTo }} />;
+    }
     return (
-      <div className="Register">
+      <div className="login">
         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <div className="card card-signin my-5 shadow p-3 mb-5 bg-white rounded">
             <div className="card-body">
@@ -63,9 +101,9 @@ class Login extends Component {
                   </label>
                 </div>
                 <div className="row float-right">
-                  <a href="/register" className="btn btn-outline-danger">
+                  <Link to="/user/register" className="btn btn-outline-danger">
                     Don't Have an Account?
-                  </a>
+                  </Link>
                   <button type="submit" className="btn btn-primary btn-submit">
                     Log In
                   </button>

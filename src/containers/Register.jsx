@@ -3,17 +3,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../css/Register.css';
+import { Redirect, Link } from 'react-router-dom';
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
-      error: null,
+      error: [],
       name: '',
       username: '',
       email: '',
       password: '',
       confirmPassword: '',
+      redirectTo: '',
     };
     this.handleTextChange.bind();
   }
@@ -25,27 +27,37 @@ class Register extends Component {
       name, username, email, password, confirmPassword,
     } = this.state;
 
+    // TODO: Validate Input
+
     // Send Server Request
+    console.log('sign-up handleSubmit, username: ');
+    console.log(username);
+
+    // request to server to add a new username/password
     axios
-      .post('/', {
+      .post('/user/register', {
         name,
         username,
         email,
         password,
-        confirmPassword,
       })
       .then((response) => {
         console.log(response);
-        if (response.data) {
+        if (!response.data.error) {
           console.log('successful signup');
-          this.setState({ redirectTo: '/login' });
+          this.setState({
+            // redirect to login page
+            redirectTo: '/user/login',
+          });
         } else {
-          console.log('sign in error');
+          console.log('username already taken');
+          // TODO: Fix Error Handling
+          this.state.error.push('Username Already Taken');
         }
       })
-      .catch((error) => {
-        console.log('sign up server error: ');
-        console.log(error);
+      .catch((err) => {
+        console.log('signup error: ');
+        console.log(err);
       });
   };
 
@@ -57,8 +69,12 @@ class Register extends Component {
 
   render() {
     const {
-      name, username, email, password, confirmPassword,
+      name, username, email, password, confirmPassword, redirectTo,
     } = this.state;
+
+    if (redirectTo) {
+      return <Redirect to={{ pathname: redirectTo }} />;
+    }
     return (
       <div className="Register">
         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -139,9 +155,9 @@ class Register extends Component {
                   </label>
                 </div>
                 <div className="row float-right">
-                  <a href="/login" className="btn btn-outline-danger">
+                  <Link to="/user/login" className="btn btn-outline-danger">
                     Already Have an Account?
-                  </a>
+                  </Link>
                   <button type="submit" className="btn btn-primary btn-submit">
                     Sign Up
                   </button>

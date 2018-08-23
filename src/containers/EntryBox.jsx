@@ -20,18 +20,18 @@ class EntryBox extends Component {
   }
 
   componentWillMount() {
-    this.fetchEntries();
-    console.log(this.state.data);
+    // this.fetchEntries();
+    //  console.log(this.state.data);
   }
 
-  fetchEntries = () => {
-    // use fetch (whatwg-fetch) when DLing from browser
-    // console.log(jsonData);
+  // fetchEntries = () => {
+  //   // use fetch (whatwg-fetch) when DLing from browser
+  //   // console.log(jsonData);
 
-    getUserEntryData().then((data) => {
-      this.setState({ data });
-    });
-  };
+  //   getUserEntryData().then((data) => {
+  //     this.setState({ data });
+  //   });
+  // };
 
   handleInputChange = (event) => {
     const newState = { ...this.state };
