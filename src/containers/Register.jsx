@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../css/Register.css';
 import { Redirect, Link } from 'react-router-dom';
+import { addUser } from '../utils/api';
 
 class Register extends Component {
   constructor() {
@@ -17,54 +18,34 @@ class Register extends Component {
       confirmPassword: '',
       redirectTo: '',
     };
-    this.handleTextChange.bind();
+
+    this.handleTextChange = this.handleTextChange.bind();
+    this.handleSubmit = this.handleSubmit.bind();
+    this.updateState = this.updateState.bind();
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     // console.log(this.state);
-    const {
-      name, username, email, password, confirmPassword,
-    } = this.state;
+    const userObj = this.state;
 
     // TODO: Validate Input
 
     // Send Server Request
     console.log('sign-up handleSubmit, username: ');
-    console.log(username);
+    console.log(this.state.username);
 
-    // request to server to add a new username/password
-    axios
-      .post('/user/register', {
-        name,
-        username,
-        email,
-        password,
-      })
-      .then((response) => {
-        console.log(response);
-        if (!response.data.error) {
-          console.log('successful signup');
-          this.setState({
-            // redirect to login page
-            redirectTo: '/user/login',
-          });
-        } else {
-          console.log('username already taken');
-          // TODO: Fix Error Handling
-          this.state.error.push('Username Already Taken');
-        }
-      })
-      .catch((err) => {
-        console.log('signup error: ');
-        console.log(err);
-      });
+    addUser(userObj, this.updateState);
   };
 
   handleTextChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
+  };
+
+  updateState = (newState) => {
+    this.setState(newState);
   };
 
   render() {
@@ -155,12 +136,12 @@ class Register extends Component {
                   </label>
                 </div>
                 <div className="row float-right">
-                  <Link to="/user/login" className="btn btn-outline-danger">
-                    Already Have an Account?
-                  </Link>
                   <button type="submit" className="btn btn-primary btn-submit">
                     Sign Up
                   </button>
+                  <Link to="/login" className="btn btn-outline-danger">
+                    Already Have an Account?
+                  </Link>
                 </div>
               </form>
             </div>

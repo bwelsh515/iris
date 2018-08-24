@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Register.css';
 import { Redirect, Link } from 'react-router-dom';
-import axios from 'axios';
-import Authenticate from '../utils/Authenticate';
+import { loginUser } from '../utils/api';
 
 class Login extends Component {
   constructor() {
@@ -21,40 +20,19 @@ class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('handleSubmit');
-    const { username, password } = this.state;
-
-    axios
-      .post('/user/login', {
-        username,
-        password,
-      })
-      .then((response) => {
-        console.log('login response: ');
-        console.log(response);
-        if (response.status === 200) {
-          // update App.js state
-          // Authenticate.authenticate();
-          const { updateUser } = this.props;
-          updateUser({
-            loggedIn: true,
-            username: response.data.username,
-          });
-          // update the state to redirect to home
-          this.setState({
-            redirectTo: '/',
-          });
-        }
-      })
-      .catch((error) => {
-        console.log('login error: ');
-        console.log(error);
-      });
+    const userObj = this.state;
+    const { updateUser } = this.props;
+    loginUser(userObj, updateUser, this.updateState);
   };
 
   handleTextChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
+  };
+
+  updateState = (newState) => {
+    this.setState(newState);
   };
 
   render() {
@@ -101,12 +79,12 @@ class Login extends Component {
                   </label>
                 </div>
                 <div className="row float-right">
-                  <Link to="/user/register" className="btn btn-outline-danger">
-                    Don't Have an Account?
-                  </Link>
                   <button type="submit" className="btn btn-primary btn-submit">
                     Log In
                   </button>
+                  <Link to="/register" className="btn btn-outline-danger">
+                    Don't Have an Account?
+                  </Link>
                 </div>
               </form>
             </div>
