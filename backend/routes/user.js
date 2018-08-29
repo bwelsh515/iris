@@ -75,4 +75,27 @@ router.post('/logout', (req, res) => {
   }
 });
 
+// Add User Entry
+router.post('/id/entry', (req, res) => {
+  console.log('add entry');
+
+  const { username, newEntry } = req.body;
+  // ADD VALIDATION
+  User.findOneAndUpdate({ username }, { $push: { entries: newEntry } }, (err, user) => {
+    if (err) {
+      console.log('Error adding new entry: ', err);
+    } else {
+      console.log('Success ', user);
+    }
+    return res.send('successfully saved');
+  });
+
+  // User.findOneAndUpdate({ username }, entries, { upsert: true }, (err, user) => {
+  //   if (err) {
+  //     console.log('Error Adding new entry: ', err);
+  //   }
+  //   return res.send('succesfully saved');
+  // });
+});
+
 module.exports = router;

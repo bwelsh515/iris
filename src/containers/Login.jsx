@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Register.css';
 import { Redirect, Link } from 'react-router-dom';
+import axios from 'axios';
 import { loginUser } from '../utils/api';
 
 class Login extends Component {
@@ -15,14 +16,17 @@ class Login extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
+    this.updateState = this.updateState.bind();
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('handleSubmit');
-    const userObj = this.state;
+    // const userObj = this.state;
+    const { username, password } = this.state;
     const { updateUser } = this.props;
-    loginUser(userObj, updateUser, this.updateState);
+    const userObj = { username, password };
+    loginUser(userObj, updateUser);
   };
 
   handleTextChange = (e) => {
@@ -39,8 +43,15 @@ class Login extends Component {
     const {
       name, username, email, password, confirmPassword, redirectTo,
     } = this.state;
-    if (redirectTo) {
-      return <Redirect to={{ pathname: redirectTo }} />;
+    const { isAuthenticated } = this.props;
+
+    // Redirect to home after login
+    // if (redirectTo) {
+    //   return <Redirect to={{ pathname: redirectTo }} />;
+    // }
+    // Redirect to home if authenticated (so user cant use login form if logged in)
+    if (isAuthenticated) {
+      return <Redirect to={{ pathname: '/' }} />;
     }
     return (
       <div className="login">

@@ -3,11 +3,13 @@ import { Route, Redirect } from 'react-router-dom';
 // import Authenticate from './Authenticate';
 
 // Protects Pages from being accessed from users that aren't logged in
-const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+const PrivateRoute = ({
+  component: Component, isAuthenticated, username, name, ...rest
+}) => (
   <Route
     {...rest}
     render={props => (isAuthenticated ? (
-      <Component {...props} />
+      <Component username={username} name={name} {...props} />
     ) : (
       <Redirect
         to={{

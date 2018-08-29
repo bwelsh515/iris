@@ -38,12 +38,14 @@ class Register extends Component {
     addUser(userObj, this.updateState);
   };
 
+  // Called when form input changes
   handleTextChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
 
+  // Helper function to update state
   updateState = (newState) => {
     this.setState(newState);
   };
@@ -52,10 +54,18 @@ class Register extends Component {
     const {
       name, username, email, password, confirmPassword, redirectTo,
     } = this.state;
+    const { isAuthenticated } = this.props;
 
+    // Redirect to home after login or if authenticated
     if (redirectTo) {
       return <Redirect to={{ pathname: redirectTo }} />;
     }
+
+    // Redirect to home if authenticated (so user cant use login form if logged in)
+    if (isAuthenticated) {
+      return <Redirect to={{ pathname: '/' }} />;
+    }
+
     return (
       <div className="Register">
         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">

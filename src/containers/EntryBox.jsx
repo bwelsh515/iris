@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 import fs from 'fs';
 import EntryAdd from '../components/EntryAdd';
 import EntryList from '../components/EntryList';
-import jsonData from '../data.json';
-import { getUserEntryData } from '../utils/api';
+import { addUserEntry } from '../utils/api';
 
 class EntryBox extends Component {
   constructor() {
@@ -13,15 +12,19 @@ class EntryBox extends Component {
     this.state = {
       data: [],
       error: null,
-      author: 'Brian Welsh',
+      name: '',
       title: '',
       content: '',
+      _id: '',
+      username: '',
     };
   }
 
   componentWillMount() {
     // this.fetchEntries();
     //  console.log(this.state.data);
+    const { name, username } = this.props;
+    this.setState({ name, username });
   }
 
   // fetchEntries = () => {
@@ -41,27 +44,29 @@ class EntryBox extends Component {
 
   handleSubmitEntry = (e) => {
     e.preventDefault();
-    const { author, title, content } = this.state;
+    const {
+      name, title, content, username,
+    } = this.state;
     // console.log(`author: ${author}   title: ${title}   content: ${content}`);
     if (!title || !content) {
       // TODO: Error Handle
       return;
     }
-    // TODO: Encode into JSON and write to data.json (eventually DB)
-
-    jsonData.push({ author, title, content });
-    console.log(jsonData);
-    console.log(JSON.stringify(jsonData));
-    fs.writeFile('../data.json', jsonData, 'utf8', (err, obj) => {
-      if (err) throw err;
-      console.log('write to json.data complete');
-    });
+    const entryObj = {
+      name,
+      title,
+      content,
+      username,
+    };
+    addUserEntry(entryObj);
     this.setState({ title: '' });
     this.setState({ content: '' });
   };
 
   render() {
-    const { data, content, title } = this.state;
+    const {
+      data, content, title, name, username,
+    } = this.state;
     return (
       <div className="EntryBox">
         <EntryAdd
@@ -71,6 +76,11 @@ class EntryBox extends Component {
           handleSubmitEntry={this.handleSubmitEntry}
         />
         <EntryList data={data} />
+        <h5>
+          {name}
+          {' '}
+          {username}
+        </h5>
       </div>
     );
   }

@@ -77,7 +77,9 @@ const addUser = (userObj, stateCallback) => {
 };
 
 // POST - Login User
-const loginUser = (userObj, userCallback, stateCallback) => {
+// userObj -> username/password of login form
+// userCallback -> updates the state of App.jsx
+const loginUser = (userObj, userCallback) => {
   const { username, password } = userObj;
   axios
     .post('/api/user/login', {
@@ -88,14 +90,10 @@ const loginUser = (userObj, userCallback, stateCallback) => {
       console.log('login response: ');
       console.log(response);
       if (response.status === 200) {
-        // update App.js state
         userCallback({
           isAuthenticated: true,
           username: response.data.username,
-        });
-        // update the state to redirect to home
-        stateCallback({
-          redirectTo: '/',
+          name: response.data.name,
         });
       }
     })
@@ -106,6 +104,7 @@ const loginUser = (userObj, userCallback, stateCallback) => {
 };
 
 // POST - Logout Current User
+// stateCallback -> updates the state of App.jsx
 const logoutUser = (stateCallback) => {
   console.log('logging out');
   axios
@@ -125,6 +124,33 @@ const logoutUser = (stateCallback) => {
     });
 };
 
+// POST - Add User Entry
+const addUserEntry = (entryObj) => {
+  const {
+    username, name, title, content,
+  } = entryObj;
+  const entries = { name, title, content };
+  axios
+    .post('/api/user/id/entry', {
+      username,
+      entries,
+    })
+    .then((response) => {
+      console.log(response);
+      if (!response.data.error) {
+        console.log('successful entry post');
+      } else {
+        console.log('Unsuccessful entry post');
+        // TODO: Fix Error Handling
+        this.state.error.push('An error occured');
+      }
+    })
+    .catch((err) => {
+      console.log('Entry error: ');
+      console.log(err);
+    });
+};
+
 export {
-  getUser, addUser, loginUser, logoutUser,
+  getUser, addUser, loginUser, logoutUser, addUserEntry,
 };

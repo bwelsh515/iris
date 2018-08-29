@@ -37,7 +37,9 @@ class App extends Component {
   }
 
   render() {
-    const { isAuthenticated, gotUser } = this.state;
+    const {
+      isAuthenticated, gotUser, username, name,
+    } = this.state;
     console.log(isAuthenticated);
     return (
       <div className="App">
@@ -57,12 +59,24 @@ class App extends Component {
                       path="/"
                       component={EntryBox}
                       isAuthenticated={isAuthenticated}
+                      username={username}
+                      name={name}
                     />
                   ) : (
                     ''
                   )}
-                  <Route path="/login" render={() => <Login updateUser={this.updateUser} />} />
-                  <Route path="/register" render={() => <Register register={this.Register} />} />
+                  <Route
+                    path="/login"
+                    render={() => (
+                      <Login updateUser={this.updateUser} isAuthenticated={isAuthenticated} />
+                    )}
+                  />
+                  <Route
+                    path="/register"
+                    render={() => (
+                      <Register register={this.Register} isAuthenticated={isAuthenticated} />
+                    )}
+                  />
                   <Route component={UnusedPage} />
                 </Switch>
               </div>

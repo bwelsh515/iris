@@ -11,6 +11,7 @@ const userSchema = new Schema({
   username: { type: String, unique: false, required: false },
   email: { type: String, unique: false, required: false },
   password: { type: String, unique: false, required: false },
+  entries: [{ name: String, title: String, content: String }],
 });
 
 // Define schema methods
