@@ -3,13 +3,12 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import { Route, Switch } from 'react-router-dom';
-import EntryBox from '../containers/EntryBox';
-import NavBar from './NavBar';
-import Login from '../containers/Login';
-import Register from '../containers/Register';
+import EntryBox from './EntryBox';
+import NavBar from '../components/NavBar';
+import Login from './Login';
+import Register from './Register';
 import PrivateRoute from '../utils/PrivateRoute';
 import UnusedPage from '../utils/UnusedPage';
-import Authenticate from '../utils/Authenticate';
 import { getUser } from '../utils/api';
 
 class App extends Component {

@@ -1,9 +1,7 @@
 // api.jsx
 
 import axios from 'axios';
-import { stat } from 'fs';
-
-const BASE_URL = 'http://localhost:8080';
+// const BASE_URL = 'http://localhost:8080';
 
 // function getUserEntryData() {
 //   const url = `${BASE_URL}/api/user/entry`;
@@ -19,8 +17,6 @@ const BASE_URL = 'http://localhost:8080';
 // GET - Current user from Express Sessions
 const getUser = (stateCallback) => {
   axios.get('/api/user/').then((response) => {
-    console.log('Get user response: ');
-    console.log(response.data);
     if (response.data.user) {
       console.log('Get User: There is a user saved in the server session: ');
       console.log(response.data.user);

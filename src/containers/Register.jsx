@@ -1,9 +1,9 @@
 // Register.jsx
 
 import React, { Component } from 'react';
-import axios from 'axios';
 import '../css/Register.css';
 import { Redirect, Link } from 'react-router-dom';
+import propTypes from 'prop-types';
 import { addUser } from '../utils/api';
 
 class Register extends Component {
@@ -33,7 +33,8 @@ class Register extends Component {
 
     // Send Server Request
     console.log('sign-up handleSubmit, username: ');
-    console.log(this.state.username);
+    const { username } = this.state;
+    console.log(username);
 
     addUser(userObj, this.updateState);
   };
@@ -76,7 +77,7 @@ class Register extends Component {
               </div>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <label>
+                  <label htmlFor="name">
                     Full Name
                     <input
                       type="text"
@@ -89,7 +90,7 @@ class Register extends Component {
                   </label>
                 </div>
                 <div className="form-group">
-                  <label>
+                  <label htmlFor="username">
                     Username
                     <input
                       type="text"
@@ -103,7 +104,7 @@ class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label>
+                  <label htmlFor="email">
                     Email Address
                     <input
                       type="email"
@@ -118,7 +119,7 @@ class Register extends Component {
                   </label>
                 </div>
                 <div className="form-group">
-                  <label>
+                  <label htmlFor="password">
                     Password
                     <input
                       type="password"
@@ -132,7 +133,7 @@ class Register extends Component {
                   </label>
                 </div>
                 <div className="form-group">
-                  <label>
+                  <label htmlFor="confirmpassword">
                     Confirm Password
                     <input
                       type="password"
@@ -161,5 +162,9 @@ class Register extends Component {
     );
   }
 }
+
+Register.propTypes = {
+  isAuthenticated: propTypes.bool.isRequired,
+};
 
 export default Register;

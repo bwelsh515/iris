@@ -1,7 +1,9 @@
+// Login.jsx
+
 import React, { Component } from 'react';
 import '../css/Register.css';
 import { Redirect, Link } from 'react-router-dom';
-import axios from 'axios';
+import propTypes from 'prop-types';
 import { loginUser } from '../utils/api';
 
 class Login extends Component {
@@ -11,7 +13,6 @@ class Login extends Component {
       error: null,
       username: '',
       password: '',
-      redirectTo: null,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,36 +20,32 @@ class Login extends Component {
     this.updateState = this.updateState.bind();
   }
 
+  // Called when submit button is pressed -> Logs in the user
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('handleSubmit');
-    // const userObj = this.state;
     const { username, password } = this.state;
     const { updateUser } = this.props;
     const userObj = { username, password };
     loginUser(userObj, updateUser);
   };
 
+  // Called when input changes on Login Form
   handleTextChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
 
+  // Helper function to update state
   updateState = (newState) => {
     this.setState(newState);
   };
 
   render() {
-    const {
-      name, username, email, password, confirmPassword, redirectTo,
-    } = this.state;
+    const { username, password } = this.state;
     const { isAuthenticated } = this.props;
 
-    // Redirect to home after login
-    // if (redirectTo) {
-    //   return <Redirect to={{ pathname: redirectTo }} />;
-    // }
     // Redirect to home if authenticated (so user cant use login form if logged in)
     if (isAuthenticated) {
       return <Redirect to={{ pathname: '/' }} />;
@@ -63,7 +60,7 @@ class Login extends Component {
               </div>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <label>
+                  <label htmlFor="username">
                     Username
                     <input
                       type="text"
@@ -76,7 +73,7 @@ class Login extends Component {
                   </label>
                 </div>
                 <div className="form-group">
-                  <label>
+                  <label htmlFor="password">
                     Password
                     <input
                       type="password"
@@ -94,7 +91,7 @@ class Login extends Component {
                     Log In
                   </button>
                   <Link to="/register" className="btn btn-outline-danger">
-                    Don't Have an Account?
+                    Don&apos;t Have an Account?
                   </Link>
                 </div>
               </form>
@@ -105,5 +102,10 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  isAuthenticated: propTypes.bool.isRequired,
+  updateUser: propTypes.func.isRequired,
+};
 
 export default Login;

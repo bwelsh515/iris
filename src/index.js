@@ -3,12 +3,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './css/bootstrap.min.css';
-import App from './components/App';
-import Register from './containers/Register';
-import Login from './containers/Login';
-import registerServiceWorker from './registerServiceWorker';
+import App from './containers/App';
+// import registerServiceWorker from './registerServiceWorker';
 
 const Root = () => (
   <div>

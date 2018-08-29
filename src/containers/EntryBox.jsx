@@ -1,7 +1,7 @@
 // EntryBox.jsx
 
 import React, { Component } from 'react';
-import fs from 'fs';
+import propTypes from 'prop-types';
 import EntryAdd from '../components/EntryAdd';
 import EntryList from '../components/EntryList';
 import { addUserEntry } from '../utils/api';
@@ -85,5 +85,10 @@ class EntryBox extends Component {
     );
   }
 }
+
+EntryBox.propTypes = {
+  name: propTypes.string.isRequired,
+  username: propTypes.string.isRequired,
+};
 
 export default EntryBox;
