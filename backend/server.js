@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const dbConnection = require('./db');
 
 const passport = require('./passport');
@@ -23,9 +24,11 @@ app.use(
 app.use(bodyParser.json());
 
 // Sessions
+// MongoStore used to login multiple users at a time
 app.use(
   session({
-    secret: 'fraggle-rock', // pick a random string to make the hash that is generated secure
+    secret: 'fraggle-rock',
+    store: new MongoStore({ mongooseConnection: dbConnection }),
     resave: false, // required
     saveUninitialized: false, // required
   }),
