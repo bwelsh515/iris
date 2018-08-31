@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import EntryAdd from '../components/EntryAdd';
 import EntryList from '../components/EntryList';
-import { addUserEntry } from '../utils/api';
+import { addUserEntry, getUserEntries } from '../utils/api';
 
 class EntryBox extends Component {
   constructor() {
     super();
     this.state = {
-      data: [],
+      entries: [],
       error: null,
       name: '',
       title: '',
@@ -18,23 +18,37 @@ class EntryBox extends Component {
       _id: '',
       username: '',
     };
+    this.pollInterval = null;
+    // this.componentWillMount = this.componentWillMount.bind();
+    // this.fetchEntries = this.fetchEntries.bind();
+    this.updateState = this.updateState.bind();
   }
 
+  // Set state from props / Get user's entries
   componentWillMount() {
-    // this.fetchEntries();
-    //  console.log(this.state.data);
     const { name, username } = this.props;
     this.setState({ name, username });
+
+    getUserEntries(username, this.updateState);
   }
 
-  // fetchEntries = () => {
-  //   // use fetch (whatwg-fetch) when DLing from browser
-  //   // console.log(jsonData);
+  componentDidMount() {
+    const { username } = this.state;
+    getUserEntries(username, this.updateState);
+  }
 
-  //   getUserEntryData().then((data) => {
-  //     this.setState({ data });
-  //   });
-  // };
+  // componentDidUpdate() {
+  //   // const { username } = this.state;
+  //   // getUserEntries(username, this.updateState);
+  // }
+
+  fetchEntries = () => {
+    // const { username } = this.state;
+    // getUserEntries(username, this.updateState);
+    // .then((data) => {
+    //   this.setState({ data });
+    // });
+  };
 
   handleInputChange = (event) => {
     const newState = { ...this.state };
@@ -47,7 +61,6 @@ class EntryBox extends Component {
     const {
       name, title, content, username,
     } = this.state;
-    // console.log(`author: ${author}   title: ${title}   content: ${content}`);
     if (!title || !content) {
       // TODO: Error Handle
       return;
@@ -59,14 +72,20 @@ class EntryBox extends Component {
       username,
     };
     addUserEntry(entryObj);
-    this.setState({ title: '' });
-    this.setState({ content: '' });
+
+    // Reset the state of the Component
+    this.setState({ title: '', content: '' });
+
+    // Get all entries AFTER the newest entry was added (so it displays real time)
+    getUserEntries(username, this.updateState);
+  };
+
+  updateState = (stateObj) => {
+    this.setState(stateObj);
   };
 
   render() {
-    const {
-      data, content, title, name, username,
-    } = this.state;
+    const { content, title, entries } = this.state;
     return (
       <div className="EntryBox">
         <EntryAdd
@@ -75,12 +94,7 @@ class EntryBox extends Component {
           title={title}
           handleSubmitEntry={this.handleSubmitEntry}
         />
-        <EntryList data={data} />
-        <h5>
-          {name}
-          {' '}
-          {username}
-        </h5>
+        <EntryList entries={entries} />
       </div>
     );
   }

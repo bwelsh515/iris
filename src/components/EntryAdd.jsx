@@ -12,7 +12,7 @@ const EntryAdd = (props) => {
     <div className="add-entry container">
       <form onSubmit={handleSubmitEntry}>
         <div className="form-group">
-          <label>
+          <label htmlFor="title">
             Title
             <input
               type="text"
@@ -25,7 +25,7 @@ const EntryAdd = (props) => {
           </label>
         </div>
         <div className="form-group">
-          <label>
+          <label htmlFor="content">
             What Happened Today?
             <textarea
               type="text"

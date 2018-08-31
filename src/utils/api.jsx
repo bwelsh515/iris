@@ -147,6 +147,29 @@ const addUserEntry = (entryObj) => {
     });
 };
 
+// GET -> retrieves all of user's entries & updates state of EntryBox.jsx
+const getUserEntries = (username, stateCallback) => {
+  console.log('Get Entries for: ', username);
+
+  axios
+    .get('/api/user/id/entry', {
+      params: {
+        username,
+      },
+    })
+    .then((response) => {
+      console.log('success', response.data);
+      stateCallback({
+        entries: response.data.entries,
+      });
+      return response.data.entries;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .then(() => {});
+};
+
 export {
-  getUser, addUser, loginUser, logoutUser, addUserEntry,
+  getUser, addUser, loginUser, logoutUser, addUserEntry, getUserEntries,
 };

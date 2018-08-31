@@ -3,6 +3,7 @@ const passport = require('../passport');
 
 const router = express.Router();
 const User = require('../db/models/user');
+const bodyParser = require('body-parser');
 
 // POST - Sign Up User
 router.post('/register', (req, res) => {
@@ -25,6 +26,7 @@ router.post('/register', (req, res) => {
         username,
         email,
         password,
+        entries: [],
       });
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
@@ -79,15 +81,16 @@ router.post('/logout', (req, res) => {
 router.post('/id/entry', (req, res) => {
   console.log('add entry');
 
-  const { username, newEntry } = req.body;
+  const { username, entries } = req.body;
+  console.log(req.body);
   // ADD VALIDATION
-  User.findOneAndUpdate({ username }, { $push: { entries: newEntry } }, (err, user) => {
+  User.findOneAndUpdate({ username }, { $push: { entries } }, (err, user) => {
     if (err) {
       console.log('Error adding new entry: ', err);
-    } else {
-      console.log('Success ', user);
+      return res.send(err);
     }
-    return res.send('successfully saved');
+    console.log('Success ', user);
+    return res.send('200', entries);
   });
 
   // User.findOneAndUpdate({ username }, entries, { upsert: true }, (err, user) => {
@@ -96,6 +99,27 @@ router.post('/id/entry', (req, res) => {
   //   }
   //   return res.send('succesfully saved');
   // });
+});
+
+// Get User Entries
+router.get('/id/entry', (req, res) => {
+  console.log('Get User Entries');
+  // console.log(req.query);
+
+  const { username } = req.query;
+  // console.log(username);
+
+  User.findOne({ username }, (err, user) => {
+    // console.log(user);
+    if (err) {
+      console.log('User.js get error: ', err);
+    } else if (user) {
+      console.log(user.entries);
+      res.json({
+        entries: user.entries,
+      });
+    }
+  });
 });
 
 module.exports = router;
