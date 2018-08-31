@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { logoutUser } from '../utils/api';
+import '../css/navbar.css';
 
 class NavBar extends Component {
   logout = (e) => {
@@ -12,19 +13,14 @@ class NavBar extends Component {
   render() {
     const { isAuthenticated } = this.props;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <NavLink className="navbar-brand" to="/">
+      <nav className="navbar navbar-expand-lg navbar-dark nb-custom">
+        <NavLink className="navbar-brand nb-brand-custom" to="/">
           Iris
         </NavLink>
         <ul className="mr-auto navbar-nav">
           <li className="nav-item">
             <NavLink className="nav-link" to="/">
               Entries
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/">
-              Profile
             </NavLink>
           </li>
         </ul>

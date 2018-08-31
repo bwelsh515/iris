@@ -56,35 +56,29 @@ class Login extends Component {
           <div className="card card-signin my-5 shadow p-3 mb-5 bg-white rounded">
             <div className="card-body">
               <div className="text-center card-title header">
-                <strong>Log In</strong>
+                <strong>Account Log In</strong>
               </div>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="username">
-                    Username
-                    <input
-                      type="text"
-                      name="username"
-                      className="form-control"
-                      placeholder="Enter username"
-                      onChange={this.handleTextChange}
-                      value={username}
-                    />
-                  </label>
+                  <input
+                    type="text"
+                    name="username"
+                    className="form-control"
+                    placeholder="Username"
+                    onChange={this.handleTextChange}
+                    value={username}
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">
-                    Password
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="password"
-                      placeholder="Enter password"
-                      onChange={this.handleTextChange}
-                      name="password"
-                      value={password}
-                    />
-                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    placeholder="Password"
+                    onChange={this.handleTextChange}
+                    name="password"
+                    value={password}
+                  />
                 </div>
                 <div className="row float-right">
                   <button type="submit" className="btn btn-primary btn-submit">
