@@ -45,43 +45,41 @@ class App extends Component {
         <div className="NavBar">
           <NavBar isAuthenticated={isAuthenticated} updateUser={this.updateUser} />
         </div>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-1" />
-            <div className="col-md-10">
-              <div className="container">
-                <Switch>
-                  {/* Only redirect if user has been requested */}
-                  {gotUser ? (
-                    <PrivateRoute
-                      exact
-                      path="/"
-                      component={EntryBox}
-                      isAuthenticated={isAuthenticated}
-                      username={username}
-                      name={name}
-                    />
-                  ) : (
-                    ''
+        <div className="row">
+          <div className="col-md-1" />
+          <div className="col-md-10">
+            <div className="container">
+              <Switch>
+                {/* Only redirect if user has been requested */}
+                {gotUser ? (
+                  <PrivateRoute
+                    exact
+                    path="/"
+                    component={EntryBox}
+                    isAuthenticated={isAuthenticated}
+                    username={username}
+                    name={name}
+                  />
+                ) : (
+                  ''
+                )}
+                <Route
+                  path="/login"
+                  render={() => (
+                    <Login updateUser={this.updateUser} isAuthenticated={isAuthenticated} />
                   )}
-                  <Route
-                    path="/login"
-                    render={() => (
-                      <Login updateUser={this.updateUser} isAuthenticated={isAuthenticated} />
-                    )}
-                  />
-                  <Route
-                    path="/register"
-                    render={() => (
-                      <Register register={this.Register} isAuthenticated={isAuthenticated} />
-                    )}
-                  />
-                  <Route component={UnusedPage} />
-                </Switch>
-              </div>
+                />
+                <Route
+                  path="/register"
+                  render={() => (
+                    <Register register={this.Register} isAuthenticated={isAuthenticated} />
+                  )}
+                />
+                <Route component={UnusedPage} />
+              </Switch>
             </div>
-            <div className="col-md-1" />
           </div>
+          <div className="col-md-1" />
         </div>
       </div>
     );

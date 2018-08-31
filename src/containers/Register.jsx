@@ -77,74 +77,59 @@ class Register extends Component {
               </div>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="name">
-                    Full Name
-                    <input
-                      type="text"
-                      name="name"
-                      className="form-control"
-                      placeholder="Enter name"
-                      onChange={this.handleTextChange}
-                      value={name}
-                    />
-                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    className="form-control"
+                    placeholder="Full Name"
+                    onChange={this.handleTextChange}
+                    value={name}
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="username">
-                    Username
-                    <input
-                      type="text"
-                      name="username"
-                      className="form-control"
-                      placeholder="Enter username"
-                      onChange={this.handleTextChange}
-                      value={username}
-                    />
-                  </label>
+                  <input
+                    type="text"
+                    name="username"
+                    className="form-control"
+                    placeholder="Username"
+                    onChange={this.handleTextChange}
+                    value={username}
+                  />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">
-                    Email Address
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      placeholder="Enter email"
-                      onChange={this.handleTextChange}
-                      name="email"
-                      value={email}
-                    />
-                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Email"
+                    onChange={this.handleTextChange}
+                    name="email"
+                    value={email}
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">
-                    Password
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="password"
-                      placeholder="Enter password"
-                      onChange={this.handleTextChange}
-                      name="password"
-                      value={password}
-                    />
-                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    placeholder="Password"
+                    onChange={this.handleTextChange}
+                    name="password"
+                    value={password}
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="confirmpassword">
-                    Confirm Password
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="confirm-password"
-                      placeholder="Confirm password"
-                      onChange={this.handleTextChange}
-                      name="confirmPassword"
-                      value={confirmPassword}
-                    />
-                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="confirm-password"
+                    placeholder="Confirm password"
+                    onChange={this.handleTextChange}
+                    name="confirmPassword"
+                    value={confirmPassword}
+                  />
                 </div>
                 <div className="row float-right">
                   <button type="submit" className="btn btn-primary btn-submit">
