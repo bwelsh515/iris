@@ -18,37 +18,18 @@ class EntryBox extends Component {
       _id: '',
       username: '',
     };
-    this.pollInterval = null;
-    // this.componentWillMount = this.componentWillMount.bind();
-    // this.fetchEntries = this.fetchEntries.bind();
     this.updateState = this.updateState.bind();
   }
 
   // Set state from props / Get user's entries
   componentWillMount() {
+    // Set the state of the logged in user name and username
     const { name, username } = this.props;
     this.setState({ name, username });
 
+    // Fetch the user's entries
     getUserEntries(username, this.updateState);
   }
-
-  componentDidMount() {
-    const { username } = this.state;
-    getUserEntries(username, this.updateState);
-  }
-
-  // componentDidUpdate() {
-  //   // const { username } = this.state;
-  //   // getUserEntries(username, this.updateState);
-  // }
-
-  fetchEntries = () => {
-    // const { username } = this.state;
-    // getUserEntries(username, this.updateState);
-    // .then((data) => {
-    //   this.setState({ data });
-    // });
-  };
 
   handleInputChange = (event) => {
     const newState = { ...this.state };

@@ -4,8 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Entry from './Entry';
 
+// Props: entries: []
 const EntryList = (props) => {
   const { entries } = props;
+
+  // Slice and Reverse (so newest entry is at top) entries array
+  // Then map them to a new list element of Component Entry
   const entryNodes = entries
     .slice(0)
     .reverse()
@@ -15,6 +19,7 @@ const EntryList = (props) => {
       </li>
     ));
 
+  // Return the list ul of Entries
   return (
     <ul className="entry-list list-group">
       <div>{entryNodes}</div>
@@ -22,6 +27,7 @@ const EntryList = (props) => {
   );
 };
 
+// Prop Types for EntryList
 EntryList.propTypes = {
   entries: PropTypes.arrayOf(
     PropTypes.shape({
@@ -32,6 +38,7 @@ EntryList.propTypes = {
   ),
 };
 
+// Default Prop Types for EntryList
 EntryList.defaultProps = {
   entries: [],
 };
