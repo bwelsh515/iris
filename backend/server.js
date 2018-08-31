@@ -14,6 +14,11 @@ const PORT = 8080;
 // Route requires
 const user = require('./routes/user');
 
+// Use client/build when production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
 // MIDDLEWARE
 app.use(morgan('dev'));
 app.use(
