@@ -1,0 +1,16 @@
+.ctm-btn {
+  background: #f76c6c !important;
+}
+
+.register {
+  text-decoration: none;
+}
+
+.filler {
+  height: 300px;
+}
+
+.login {
+  background: linear-gradient(bottom right, #77c9d4, #57bc90);
+  padding-top: 5em;
+}

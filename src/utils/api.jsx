@@ -120,33 +120,6 @@ const logoutUser = (stateCallback) => {
     });
 };
 
-// POST - Add User Entry
-const addUserEntry = (entryObj) => {
-  const {
-    username, name, title, content,
-  } = entryObj;
-  const entries = { name, title, content };
-  axios
-    .post('/api/user/id/entry', {
-      username,
-      entries,
-    })
-    .then((response) => {
-      console.log(response);
-      if (!response.data.error) {
-        console.log('successful entry post');
-      } else {
-        console.log('Unsuccessful entry post');
-        // TODO: Fix Error Handling
-        this.state.error.push('An error occured');
-      }
-    })
-    .catch((err) => {
-      console.log('Entry error: ');
-      console.log(err);
-    });
-};
-
 // GET -> retrieves all of user's entries & updates state of EntryBox.jsx
 const getUserEntries = (username, stateCallback) => {
   console.log('Get Entries for: ', username);
@@ -168,6 +141,35 @@ const getUserEntries = (username, stateCallback) => {
       console.log(error);
     })
     .then(() => {});
+};
+
+// POST - Add User Entry
+const addUserEntry = (entryObj, stateCallback) => {
+  const {
+    username, name, title, content,
+  } = entryObj;
+  const entries = { name, title, content };
+  axios
+    .post('/api/user/id/entry', {
+      username,
+      entries,
+    })
+    .then((response) => {
+      console.log(response);
+      if (!response.data.error) {
+        console.log('successful entry post');
+        // Update Entries in EntryList AFTER new entry POST
+        getUserEntries(username, stateCallback);
+      } else {
+        console.log('Unsuccessful entry post');
+        // TODO: Fix Error Handling
+        this.state.error.push('An error occured');
+      }
+    })
+    .catch((err) => {
+      console.log('Entry error: ');
+      console.log(err);
+    });
 };
 
 export {

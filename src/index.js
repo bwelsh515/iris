@@ -6,6 +6,7 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import './css/bootstrap.min.css';
 import App from './containers/App';
+import 'font-awesome/css/font-awesome.min.css';
 // import registerServiceWorker from './registerServiceWorker';
 
 const Root = () => (

@@ -9,14 +9,15 @@ const EntryAdd = (props) => {
     title, content, handleInputChange, handleSubmitEntry,
   } = props;
   return (
-    <div className="add-entry container">
+    <div className="add-entry">
+      <div className="header text-center mb-3">Let Your Mind Flow Free</div>
       <form onSubmit={handleSubmitEntry}>
         <div className="form-group">
-          <label htmlFor="title">
+          <label htmlFor="title" className="journal-title">
             Title
             <input
               type="text"
-              className="form-control"
+              className="form-control journal-title-box"
               name="title"
               value={title}
               onChange={handleInputChange}
@@ -25,11 +26,11 @@ const EntryAdd = (props) => {
           </label>
         </div>
         <div className="form-group">
-          <label htmlFor="content">
+          <label htmlFor="content" className="journal-content">
             What Happened Today?
             <textarea
               type="text"
-              className="journal-text form-control"
+              className="journal-content-box form-control"
               name="content"
               value={content}
               onChange={handleInputChange}
@@ -37,7 +38,7 @@ const EntryAdd = (props) => {
             />
           </label>
         </div>
-        <button type="submit" className="btn btn-primary float-right">
+        <button type="submit" className="entry-btn float-right">
           Submit
         </button>
       </form>

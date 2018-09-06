@@ -18,3 +18,16 @@
 label {
   padding: 5px;
 }
+
+.filler {
+  height: 300px;
+}
+
+.register {
+  background: linear-gradient(bottom right, #77c9d4, #57bc90);
+  padding-top: 5em;
+}
+
+/* body {
+  background: linear-gradient(to bottom right, #77c9d4, #57bc90);
+} */

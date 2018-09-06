@@ -1,7 +1,45 @@
 .nb-custom {
-  background: #24305e;
+  background: #f8f8f8 !important;
 }
 
 .nb-brand-custom {
-  color: #f76c6c !important;
+  color: #015249 !important;
+  padding-left: 1em;
+}
+
+.nav-bar-ctm {
+  padding: 0;
+  /* margin-bottom: 9px; */
+  background: #f8f8f8 !important;
+}
+
+.nav-login {
+  padding: 15px 40px;
+  background: #77c9d4;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-logout {
+  padding: 15px 40px;
+  text-decoration: none;
+  background: #77c9d4;
+  color: white;
+}
+
+.nav-entry {
+  margin-right: 30px;
+  padding: 15px 40px;
+  color: #77c9d4 !important;
+}
+
+a:focus {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
 }

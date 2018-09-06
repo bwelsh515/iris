@@ -68,13 +68,13 @@ class Register extends Component {
     }
 
     return (
-      <div className="Register">
+      <div className="register">
         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div className="card card-signin my-5 shadow p-3 mb-5 bg-white rounded">
+          <div className="card card-signin my-5 shadow  mb-5 bg-white rounded">
+            <div className="card-header">
+              <h3 className="mb-0">Account Register</h3>
+            </div>
             <div className="card-body">
-              <div className="text-center card-title header">
-                <strong>Register An Account</strong>
-              </div>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <input
@@ -132,17 +132,18 @@ class Register extends Component {
                   />
                 </div>
                 <div className="row float-right">
-                  <button type="submit" className="btn btn-primary btn-submit">
+                  <Link to="/login" className="mt-4 mr-5">
+                    Have an Account?
+                  </Link>
+                  <button type="submit" className="btn btn-info btn-lg btn-submit">
                     Sign Up
                   </button>
-                  <Link to="/login" className="btn btn-outline-danger">
-                    Already Have an Account?
-                  </Link>
                 </div>
               </form>
             </div>
           </div>
         </div>
+        <div className="filler" />
       </div>
     );
   }

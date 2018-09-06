@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import EntryAdd from '../components/EntryAdd';
 import EntryList from '../components/EntryList';
+import '../css/EntryBox.css';
 import { addUserEntry, getUserEntries } from '../utils/api';
 
 class EntryBox extends Component {
@@ -71,13 +72,10 @@ class EntryBox extends Component {
       content,
       username,
     };
-    addUserEntry(entryObj);
+    addUserEntry(entryObj, this.updateState);
 
     // Reset the state of the Component
     this.setState({ title: '', content: '' });
-
-    // Get all entries AFTER the newest entry was added (so it displays real time)
-    getUserEntries(username, this.updateState);
   };
 
   updateState = (stateObj) => {
@@ -94,7 +92,13 @@ class EntryBox extends Component {
           title={title}
           handleSubmitEntry={this.handleSubmitEntry}
         />
-        <EntryList entries={entries} />
+        <div className="row">
+          <div className="col-md-1" />
+          <div className="col-md-10">
+            <EntryList entries={entries} />
+          </div>
+          <div className="col-md-1" />
+        </div>
       </div>
     );
   }
@@ -106,3 +110,7 @@ EntryBox.propTypes = {
 };
 
 export default EntryBox;
+
+// TODO: Figure out why the logout button has margins on it when signed in
+// Add FA to Entries navbar
+// Style Entry Box

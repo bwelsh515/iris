@@ -5,6 +5,7 @@ import '../css/Register.css';
 import { Redirect, Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { loginUser } from '../utils/api';
+import '../css/login.css';
 
 class Login extends Component {
   constructor() {
@@ -53,17 +54,17 @@ class Login extends Component {
     return (
       <div className="login">
         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div className="card card-signin my-5 shadow p-3 mb-5 bg-white rounded">
+          <div className="card card-signin shadow  mb-5 bg-white rounded">
+            <div className="card-header">
+              <h3 className="mb-0">Account Login</h3>
+            </div>
             <div className="card-body">
-              <div className="text-center card-title header">
-                <strong>Account Log In</strong>
-              </div>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <input
                     type="text"
                     name="username"
-                    className="form-control"
+                    className="form-control form-control-lg"
                     placeholder="Username"
                     onChange={this.handleTextChange}
                     value={username}
@@ -72,7 +73,7 @@ class Login extends Component {
                 <div className="form-group">
                   <input
                     type="password"
-                    className="form-control"
+                    className="form-control form-control-lg"
                     id="password"
                     placeholder="Password"
                     onChange={this.handleTextChange}
@@ -81,17 +82,18 @@ class Login extends Component {
                   />
                 </div>
                 <div className="row float-right">
-                  <button type="submit" className="btn btn-primary btn-submit">
-                    Log In
-                  </button>
-                  <Link to="/register" className="btn btn-outline-danger">
+                  <Link to="/register" className="mt-4 mr-4 ">
                     Don&apos;t Have an Account?
                   </Link>
+                  <button type="submit" className=" btn btn-info btn-lg btn-submit">
+                    Log In
+                  </button>
                 </div>
               </form>
             </div>
           </div>
         </div>
+        <div className="filler" />
       </div>
     );
   }
