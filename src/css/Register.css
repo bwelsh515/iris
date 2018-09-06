@@ -24,10 +24,10 @@ label {
 }
 
 .register {
-  background: linear-gradient(bottom right, #77c9d4, #57bc90);
+  background: linear-gradient(to bottom right, #77c9d4, #57bc90);
   padding-top: 5em;
 }
 
-/* body {
-  background: linear-gradient(to bottom right, #77c9d4, #57bc90);
-} */
+.link {
+  color: #77c9d4;
+}

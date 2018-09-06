@@ -132,7 +132,7 @@ class Register extends Component {
                   />
                 </div>
                 <div className="row float-right">
-                  <Link to="/login" className="mt-4 mr-5">
+                  <Link to="/login" className="mt-4 mr-5 link">
                     Have an Account?
                   </Link>
                   <button type="submit" className="btn btn-info btn-lg btn-submit">

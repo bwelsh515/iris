@@ -82,7 +82,7 @@ class Login extends Component {
                   />
                 </div>
                 <div className="row float-right">
-                  <Link to="/register" className="mt-4 mr-4 ">
+                  <Link to="/register" className="mt-4 mr-4 link">
                     Don&apos;t Have an Account?
                   </Link>
                   <button type="submit" className=" btn btn-info btn-lg btn-submit">

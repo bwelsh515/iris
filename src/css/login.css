@@ -1,5 +1,9 @@
-.ctm-btn {
-  background: #f76c6c !important;
+input {
+  border-color: #015249 !important;
+}
+
+input:focus {
+  border-color: #77c9d4 !important;
 }
 
 .register {
@@ -11,6 +15,18 @@
 }
 
 .login {
-  background: linear-gradient(bottom right, #77c9d4, #57bc90);
+  background: linear-gradient(to bottom right, #77c9d4, #57bc90);
   padding-top: 5em;
+}
+
+.card-header {
+  color: #015249;
+}
+
+.link {
+  color: #77c9d4;
+}
+
+.btn-submit {
+  background-color: #57bc90;
 }

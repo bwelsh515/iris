@@ -10,13 +10,13 @@ const EntryList = (props) => {
     .slice(0)
     .reverse()
     .map(entry => (
-      <li className="list-group-item entry" key={entry._id}>
+      <li className="list-group-item" key={entry._id}>
         <Entry author={entry.name} title={entry.title} content={entry.content} />
       </li>
     ));
 
   return (
-    <ul className="entry-list list-group">
+    <ul className="list-group list-group-flush">
       <div>{entryNodes}</div>
     </ul>
   );

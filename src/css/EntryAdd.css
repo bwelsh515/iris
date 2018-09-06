@@ -3,22 +3,20 @@ textarea {
   display: block;
 }
 
-textarea {
-  resize: both;
-  background: #dbdbdb;
-  border-radius: 25px;
+textarea[type='text'] {
+  height: 50px;
+  transition: ease-in-out, height 0.35s ease-in-out;
 }
-textarea.vert {
-  resize: vertical;
-}
-textarea.noResize {
-  resize: none;
+
+textarea[type='text']:focus {
+  height: 200px;
 }
 
 .add-entry {
-  background: linear-gradient(bottom right, #57bc90, #77c9d4);
+  background: linear-gradient(to bottom right, #57bc90, #77c9d4);
   padding: 10px 10px 60px 10px;
   color: #f8f8f8;
+  /* border-top: 1px solid #77c9d4; */
 }
 
 .header {
@@ -57,8 +55,4 @@ textarea.noResize {
   color: #f8f8f8;
   margin-right: 2em;
   font-size: 1.2em;
-}
-
-body {
-  background: white;
 }

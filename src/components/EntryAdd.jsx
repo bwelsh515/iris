@@ -10,7 +10,7 @@ const EntryAdd = (props) => {
   } = props;
   return (
     <div className="add-entry">
-      <div className="header text-center mb-3">Let Your Mind Flow Free</div>
+      <div className="header text-center mb-3">Open Your Mind</div>
       <form onSubmit={handleSubmitEntry}>
         <div className="form-group">
           <label htmlFor="title" className="journal-title">
@@ -21,7 +21,7 @@ const EntryAdd = (props) => {
               name="title"
               value={title}
               onChange={handleInputChange}
-              placeholder="Title of Journal Entry"
+              placeholder="What were today's highlights?"
             />
           </label>
         </div>
@@ -34,7 +34,7 @@ const EntryAdd = (props) => {
               name="content"
               value={content}
               onChange={handleInputChange}
-              placeholder="Talk About your day"
+              placeholder="Talk about anything"
             />
           </label>
         </div>
