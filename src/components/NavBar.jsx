@@ -1,4 +1,7 @@
+// Na
+
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { logoutUser } from '../utils/api';
 import '../css/navbar.css';
@@ -52,5 +55,10 @@ class NavBar extends Component {
     );
   }
 }
+
+NavBar.propTypes = {
+  isAuthenticated: propTypes.bool.isRequired,
+  updateUser: propTypes.func.isRequired,
+};
 
 export default NavBar;

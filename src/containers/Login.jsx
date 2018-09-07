@@ -24,7 +24,7 @@ class Login extends Component {
   // Called when submit button is pressed -> Logs in the user
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('handleSubmit');
+    // console.log('handleSubmit');
     const { username, password } = this.state;
     const { updateUser } = this.props;
     const userObj = { username, password };
@@ -99,6 +99,7 @@ class Login extends Component {
   }
 }
 
+// PropTypes
 Login.propTypes = {
   isAuthenticated: propTypes.bool.isRequired,
   updateUser: propTypes.func.isRequired,

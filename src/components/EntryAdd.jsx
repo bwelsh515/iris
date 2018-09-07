@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 import '../css/EntryAdd.css';
 
 const EntryAdd = (props) => {
+  // Destruct props
   const {
     title, content, handleInputChange, handleSubmitEntry,
   } = props;
+
   return (
     <div className="add-entry">
       <div className="header text-center mb-3">Open Your Mind</div>
@@ -46,6 +48,7 @@ const EntryAdd = (props) => {
   );
 };
 
+// Prop-types
 EntryAdd.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   handleSubmitEntry: PropTypes.func.isRequired,

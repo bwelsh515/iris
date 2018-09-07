@@ -16,9 +16,11 @@ const userSchema = new Schema({
 
 // Define schema methods
 userSchema.methods = {
+  // Decrypts Password to see if equal
   checkPassword(inputPassword) {
     return bcrypt.compareSync(inputPassword, this.password);
   },
+  // Hashes password to store securely to DB
   hashPassword: plainTextPassword => bcrypt.hashSync(plainTextPassword, 10),
 };
 

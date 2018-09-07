@@ -3,7 +3,6 @@ const passport = require('../passport');
 
 const router = express.Router();
 const User = require('../db/models/user');
-const bodyParser = require('body-parser');
 
 // POST - Sign Up User
 router.post('/register', (req, res) => {
@@ -28,8 +27,8 @@ router.post('/register', (req, res) => {
         password,
         entries: [],
       });
-      newUser.save((err, savedUser) => {
-        if (err) return res.json(err);
+      newUser.save((error, savedUser) => {
+        if (error) return res.json(error);
         res.json(savedUser);
       });
     }

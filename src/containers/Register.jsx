@@ -31,11 +31,7 @@ class Register extends Component {
 
     // TODO: Validate Input
 
-    // Send Server Request
-    console.log('sign-up handleSubmit, username: ');
-    const { username } = this.state;
-    console.log(username);
-
+    // Call API to add user to DB
     addUser(userObj, this.updateState);
   };
 
@@ -52,6 +48,7 @@ class Register extends Component {
   };
 
   render() {
+    // Destruct state/props
     const {
       name, username, email, password, confirmPassword, redirectTo,
     } = this.state;
@@ -149,6 +146,7 @@ class Register extends Component {
   }
 }
 
+// propTypes
 Register.propTypes = {
   isAuthenticated: propTypes.bool.isRequired,
 };

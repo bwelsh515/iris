@@ -31,15 +31,18 @@ class App extends Component {
     getUser(this.updateUser);
   }
 
+  // Update State when user is retrieved
   updateUser(userObject) {
     this.setState(userObject);
   }
 
   render() {
+    // Destruct state
     const {
       isAuthenticated, gotUser, username, name,
     } = this.state;
-    console.log(isAuthenticated);
+
+    // console.log(isAuthenticated);
     return (
       <div className="App">
         <div className="NavBar">

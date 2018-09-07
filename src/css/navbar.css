@@ -18,6 +18,7 @@
   background: #77c9d4;
   text-decoration: none;
   color: #f8f8f8;
+  border: none;
 }
 
 .nav-logout {
@@ -25,6 +26,7 @@
   text-decoration: none;
   background: #77c9d4;
   color: #f8f8f8;
+  border: none;
 }
 
 .nav-entry {

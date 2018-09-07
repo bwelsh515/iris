@@ -19,9 +19,6 @@ class EntryBox extends Component {
       _id: '',
       username: '',
     };
-    this.pollInterval = null;
-    // this.componentWillMount = this.componentWillMount.bind();
-    // this.fetchEntries = this.fetchEntries.bind();
     this.updateState = this.updateState.bind();
   }
 
@@ -29,27 +26,12 @@ class EntryBox extends Component {
   componentWillMount() {
     const { name, username } = this.props;
     this.setState({ name, username });
-
-    getUserEntries(username, this.updateState);
   }
 
   componentDidMount() {
     const { username } = this.state;
     getUserEntries(username, this.updateState);
   }
-
-  // componentDidUpdate() {
-  //   // const { username } = this.state;
-  //   // getUserEntries(username, this.updateState);
-  // }
-
-  fetchEntries = () => {
-    // const { username } = this.state;
-    // getUserEntries(username, this.updateState);
-    // .then((data) => {
-    //   this.setState({ data });
-    // });
-  };
 
   handleInputChange = (event) => {
     const newState = { ...this.state };
@@ -59,13 +41,19 @@ class EntryBox extends Component {
 
   handleSubmitEntry = (e) => {
     e.preventDefault();
+
+    // Destruct State
     const {
       name, title, content, username,
     } = this.state;
+
+    // Do nothing if either input is empty
     if (!title || !content) {
       // TODO: Error Handle
       return;
     }
+
+    // Call API to add entry to DB
     const entryObj = {
       name,
       title,
@@ -78,6 +66,7 @@ class EntryBox extends Component {
     this.setState({ title: '', content: '' });
   };
 
+  // State Callback
   updateState = (stateObj) => {
     this.setState(stateObj);
   };
@@ -104,13 +93,10 @@ class EntryBox extends Component {
   }
 }
 
+// PropTpes
 EntryBox.propTypes = {
   name: propTypes.string.isRequired,
   username: propTypes.string.isRequired,
 };
 
 export default EntryBox;
-
-// TODO: Figure out why the logout button has margins on it when signed in
-// Add FA to Entries navbar
-// Style Entry Box
