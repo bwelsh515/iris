@@ -67,7 +67,7 @@ class Register extends Component {
     return (
       <div className="register">
         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div className="card card-signin my-5 shadow  mb-5 bg-white rounded">
+          <div className="card card-signin shadow  mb-5 bg-white rounded">
             <div className="card-header">
               <h3 className="mb-0">Account Register</h3>
             </div>
