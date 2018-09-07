@@ -4,6 +4,14 @@
 
 ## Table of Contents
 
+- [About](#about)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Installing](#installing)
+- [Technologies Used](#technologies-used)
+  - [React](#react)
+  - [Nodejs](#nodejs)
+
 ## About
 
 Iris is a journaling web application used to store personal entries. The app features a password protected login system to keep user data safe.
@@ -37,11 +45,11 @@ See the section about [deployment](#deployment) for more information.
 
 ## Technologies Used
 
-- **[React](https://reactjs.org)**
+- ### [React](https://reactjs.org)
   - Used to build a responsive user interface. The component-based design proved to supplement my application perfectly since only one component had to update when an entry was added (as opposed to reloading the entire page).
-- **[Nodejs](https://nodejs.org/en/)**
+- ### [Nodejs](https://nodejs.org/en/)
   - Used to build the backend. Node allows my application to retrieve data from the database without an I/O blocking. Express/Express-Sessions were incredibly helpful in establishing the user registration and login flow (_see Features_). Finally, express-router made API calls seamless.
-- **[MongoDB](https://www.mongodb.com)**
+- ### [MongoDB](https://www.mongodb.com)
   - Used to externally store user information. A User collection contained all information regarding a user (name, email, encrypted password, entries) and mongo allowed for quick lookup times to create, read, update, and delete operations.
 
 ## Features
@@ -49,36 +57,35 @@ See the section about [deployment](#deployment) for more information.
 - ### Register Flow
 
   - The Register Page displays as follow (at {site_url}/register)
-  - ![alt text](docs/register.png)
+    ![alt text](docs/register.png)
 
   1. The User enters his/her information and submits their account information (after form validation).
   2. An Axios request is sent to the backend Node server which routes to User and first searches the DB for an account with that username.
   3. If it does not exist, it creates a new User (based off the defined schema) and adds the user to the users collection.
   4. Before it sends the user schema to the DB, the server executes a pre-save function that encrypts the user password using a hash function defined by bcrypt. The user object looks like the following:
-     - ![alt text](docs/db_schema.png)
+     ![alt text](docs/db_schema.png)
   5. The new account is now created and the client is routed to the /login page automatically.
 
 - ### Login Flow
+
   - The Login Page displays as follows (at {site_url}/login)
-  - ![alt text](docs/login.png)
+    ![alt text](docs/login.png)
+
   1. The user entires his/her username and password and submits (after form validation).
   2. An Axios request is sent which calls Passport to authenticate the user. Passport searches the DB for the username, and, if found, decrypts the password and compares it with the inputted password. If both are the same, it rehashes the password and Passport serializes the user and stores it in the current session.
   3. The user is now redirected to '/'.
+
 - ### Add an Entry
 
   - The homepage displays as follows (at {site_url}/)
-  - ![alt text](docs/home_empty.png)
+    ![alt text](docs/home_empty.png)
 
   1. After the user creates a new account and signs in, they are redirected to the homepage. There, they will have the opportunity to add a new entry, or view their old ones. Since they have no entries, a message displays telling them to try adding one.
   2. The user can input the Title of the Entry and the Content of the entry and submit it.
-
-  - ![alt text](docs/home_add.png)
-
+     ![alt text](docs/home_add.png)
   3. On submit, an Axios request sends the entry object to the node server. The server finds the username in the database then pushes the entry object to the user's entries array.
   4. The EntryList component is automatically updated and displays all of the user's entry objects in with the newest entries on top.
-
-  - ![alt text](docs/home_filled.png)
-
+     ![alt text](docs/home_filled.png)
   5. Since the entry information is stored in the DB, the user can sign out and his/her entries will be maintained.
 
 - ### Locked Content
@@ -92,6 +99,7 @@ See the section about [deployment](#deployment) for more information.
 
 ## Iris in the Future
 
+- Get Application hosted on a public website (potentially AWS or Heroku)
 - Add Timestamp to each user Entry
 - Allow the user to edit/delete his/her entries.
 - Add different strategies for registering (Facebook, Google, Twitter)
