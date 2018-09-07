@@ -11,6 +11,15 @@
 - [Technologies Used](#technologies-used)
   - [React](#react)
   - [Nodejs](#nodejs)
+  - [MongoDB](#mongodb)
+- [Features](#features)
+  - [Register Flow](#register-flow)
+  - [Login Flow](#login-flow)
+  - [Add an Entry](#add-an-entry)
+  - [Protected Content](#protected-content)
+  - [Unused Pages](#unused-pages)
+- [Iris in the Future](#iris-in-the-future)
+- [React Documentation](#react-documentation)
 
 ## About
 
@@ -88,10 +97,12 @@ See the section about [deployment](#deployment) for more information.
      ![alt text](docs/home_filled.png)
   5. Since the entry information is stored in the DB, the user can sign out and his/her entries will be maintained.
 
-- ### Locked Content
+- ### Protected Content
+
   - When the client attempts to access the homepage ({site_url}/) and is not authenticated, React-Router redirects him/her to the Login Page. Therefore, all site content is protected.
   - Likewise, if the user IS authenticated and tries to access the login page ({site_url/login}) page or the register page({site_url/register}), the user is redirected back to the homepage (to prevent the user from signing in/registering when already authenticated).
   - Additionally, When the user signs in, their information is stored in sessions. So, if the user closes the application then reopens it a short while later, the user will be automatically signed in and redirected to the homepage which adds tremendously to the user experience.
+
 - ### Unused Pages
   - If the user enters an invalid url (i.e. {site_url}/foo), the following page is displayed.
     ![alt text](docs/unused_page.png)
@@ -110,11 +121,3 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
-# `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
