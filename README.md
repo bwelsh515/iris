@@ -41,7 +41,7 @@ See the section about [deployment](#deployment) for more information.
 ## Features
 - ### Register Flow
   - The Register Page displays as follow (at {site_url}/register)
-  - ![alt text](https://imgur.com/DnVDjWb)
+  - ![alt text](docs/register.png)
 - ### Login Flow
 - ### Locked Content
 - ### Add an Entry
