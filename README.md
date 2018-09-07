@@ -42,16 +42,6 @@ The second purpose of Iris is for me to gain a deeper insight into modern web fr
 2. run `npm install`
 3. run `npm run dev` to concurrently run frontend and backend servers
 
-## `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](#deployment) for more information.
-
 ## Technologies Used
 
 - ### [React](https://reactjs.org)
